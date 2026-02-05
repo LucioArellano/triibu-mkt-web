@@ -2085,7 +2085,7 @@ li.is-visible:nth-child(5) {
     }
 
     .contact-title {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .contact-subtitle {
@@ -2099,5 +2099,157 @@ li.is-visible:nth-child(5) {
     /* Imagen Escritorio: Relación 3 a 2 aprovechando los 1224px */
     .contact-image-wrapper {
         aspect-ratio: 3 / 2;
+    }
+}
+
+/* --- PÁGINA DE CLIENTES (Fondo Blanco) --- */
+.clients-page {
+    background-color: #fff;
+    color: #000;
+    padding-top: 120px;
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+/* Contenedor (Márgenes de 50px en móvil) */
+.container-clients {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* --- TEXTOS DE CABECERA --- */
+.clients-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.clients-title {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.clients-subtitle {
+    font-family: 'Noto Sans', sans-serif;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.4;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- GRID DE LOGOS --- */
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 80px;
+    align-items: center;
+}
+
+/* ITEM DEL CLIENTE (Contenedor) */
+.client-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    transition: transform 0.4s ease;
+    /* Aseguramos que no haya fondo ni bordes aquí */
+    background: transparent;
+}
+
+/* Hover sutil del contenedor */
+.client-item:hover {
+    transform: scale(1.03);
+}
+
+/* LA IMAGEN DEL LOGO (Ajuste de tamaño) */
+.client-item img {
+    /* CAMBIO: Aumentado del 80% al 100% para ese 30% extra de presencia */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+
+    /* Mantengo filtro grayscale y opacidad para elegancia inicial */
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: all 0.4s ease;
+}
+
+.client-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* --- LLAMADA A LA ACCIÓN Y BOTÓN --- */
+.clients-footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #eee;
+}
+
+.cta-text {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+/* ESTILOS DEL BOTÓN (Rediseñado) */
+.btn-primary {
+    padding: 15px 40px;
+    /* CAMBIO: Fondo negro inicial */
+    background-color: #000;
+    /* CAMBIO: Texto blanco inicial */
+    color: #fff;
+    /* CAMBIO: Borde transparente inicial (para evitar salto al hacer hover) */
+    border: 2px solid transparent;
+    /* CAMBIO: Esquinas muy redondeadas (tipo píldora) */
+    border-radius: 50px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+/* HOVER DEL BOTÓN */
+.btn-primary:hover {
+    /* CAMBIO: Fondo transparente */
+    background-color: transparent;
+    /* CAMBIO: Texto negro */
+    color: #000;
+    /* CAMBIO: Borde negro */
+    border: 2px solid #000;
+}
+
+/* --- MEDIA QUERY: ESCRITORIO (1024px) --- */
+@media (min-width: 1024px) {
+    .container-clients {
+        max-width: 1224px;
+        padding-top: 90px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .clients-title {
+        font-size: 3rem;
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 40px;
+    }
+
+    .client-item {
+        aspect-ratio: auto;
+        height: 120px;
     }
 }
