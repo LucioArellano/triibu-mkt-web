@@ -1,0 +1,2103 @@
+/* Importación de fuente (Ejemplo) */
+/* @font-face { font-family: 'GalanoGrotesque'; src: url('fonts/GalanoGrotesque-SemiBold.woff2'); } */
+@font-face {
+    font-family: 'GalanoGrotesque';
+    src: url('../assets/fonts/galano-grotesque-semi-bold.otf');
+    font-weight: 600;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'GalanoGrotesque', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+/* Contenedor del Header */
+.main-header {
+    background-color: #000000;
+    /* Aumentamos el padding vertical (arriba y abajo) de 20px a 40px */
+    padding: 35px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    /* Opcional: una sutil transición por si decides achicarlo al hacer scroll después */
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    /* Logo izquierda, Menu derecha */
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Logo */
+.logo img {
+    /* Si el header es más alto, quizás quieras que el logo sea ligeramente más grande */
+    cursor: pointer;
+    height: 70px;
+    display: block;
+}
+
+/* Navegación */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    /* Espacio entre elementos */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 1.1rem;
+    /* Un pelín más grande para equilibrar la altura */
+    padding-bottom: 8px;
+    /* Más espacio para la línea inferior */
+    transition: border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+/* Estado seleccionado (Active) y Hover */
+.nav-link.active,
+.nav-link:hover {
+    border-bottom: 2px solid #FFFFFF;
+    /* Línea inferior blanca */
+}
+
+/* --- ESTILOS DEL BOTÓN HAMBURGUESA (General) --- */
+.menu-toggle {
+    display: none;
+    /* Oculto en escritorio */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    z-index: 2000;
+    /* Siempre por encima de todo */
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #FFFFFF;
+    margin: 4px 0;
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+/* Animación para convertir en X */
+.menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* --- RESPONSIVE (Móvil) --- */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 15px 0;
+        /* Header más delgado en móvil */
+    }
+
+    .container {
+        /* Mantiene logo a la izq y hamburguesa a la derecha */
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .logo img {
+        height: 45px;
+        /* Logo más pequeño en móvil */
+    }
+
+    .menu-toggle {
+        display: flex;
+        /* Aparece el botón */
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        /* Inicia fuera de pantalla a la derecha */
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9);
+        /* Negro traslúcido */
+        backdrop-filter: blur(10px);
+        /* Efecto de desenfoque */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s cubic-bezier(1, 0, 0, 1);
+        z-index: 1500;
+    }
+
+    .main-nav.active {
+        right: 0;
+        /* Entra el menú */
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+    }
+
+    .nav-link {
+        font-size: 1.8rem;
+        /* Fuente grande para pantallas táctiles */
+    }
+}
+
+/* --- SECCIÓN HERO --- */
+.hero {
+    position: relative;
+    height: 100vh; /* Ocupa toda la pantalla */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Asegura que el video cubra todo el espacio */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Oscurece el video un 50% */
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 3.2rem; /* Tamaño grande para el título */    
+    margin-bottom: 90px;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    max-width: 480px;
+    margin-left: auto;        
+    margin-right: auto;
+}
+
+/* --- BOTONES --- */
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    padding: 15px 40px;
+    text-decoration: none;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+    border-radius: 50px; /* Esquinas redondeadas solicitadas */
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+/* Botón Contact (Borde blanco) */
+.btn-outline {
+    background: transparent;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+}
+
+.btn-outline:hover {
+    background: #FFFFFF;
+    color: #000000;
+}
+
+/* Botón Portfolio (Sin borde) */
+.btn-ghost {
+    background: transparent;
+    border: 2px solid transparent;
+    color: #FFFFFF;
+}
+
+.btn-ghost:hover {
+    opacity: 0.7;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    .hero{
+        height: 70vh;
+    }
+    .hero-content {
+        max-width: 380px;
+    }
+    .hero-content h1 {
+        font-size: 2.5rem;
+        margin-top: 100px;
+        margin-bottom: 20px;
+    }
+    .hero-content p {
+        max-width: 90%;            
+        font-size: 1rem;
+    }
+    .hero-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn {
+        width: 200px;
+    }
+}
+
+/* =========================================
+   SECCIÓN MANIFESTO - FINAL
+   ========================================= */
+
+.manifesto {
+    background-color: #000000;
+    padding: 20px 50px;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+.container-manifesto {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Tipografía Móvil */
+.sub-text {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    width: 75%;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.main-title {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+/* Imagen Móvil */
+.manifesto-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Cuerpo y Párrafo */
+.manifesto-body p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    color: #E0E0E0;
+}
+
+/* BOTÓN CONTACT (Fondo blanco, esquinas redondas) */
+.btn-white {
+    display: inline-block;
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 16px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'GalanoGrotesque', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 2px solid #FFFFFF;
+    text-align: center;
+}
+
+.btn-white:hover {
+    background-color: transparent;
+    color: #FFFFFF;
+}
+
+/* =========================================
+   SECCIÓN MANIFESTO - ESCRITORIO (50/50)
+   ========================================= */
+@media (min-width: 1024px) {
+    .manifesto {
+        /* 10% de padding a los costados del contenedor principal */
+        padding: 100px 10%;
+        background-color: #000;
+    }
+
+    .container-manifesto {
+        display: grid;
+        /* Relación 50/50 */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        max-width: 100%;
+        /* Que use el espacio dictado por el padding del padre */
+        margin: 0 auto;
+        column-gap: 0;
+        align-items: start;
+    }
+
+    /* COLUMNA DE TEXTO (Izquierda) */
+    .manifesto-header,
+    .manifesto-body {
+        grid-column: 1;
+        /* Para que el texto ocupe un 35% del total (estando en un 50%),
+           necesitamos que ocupe el 70% de su columna (0.5 * 0.7 = 0.35) */
+        padding-right: 30%;
+        text-align: left;
+    }
+
+    .manifesto-header {
+        grid-row: 1;
+        align-self: start;
+    }
+
+    .manifesto-body {
+        grid-row: 2;
+        align-self: start;
+        padding-top: 10px;
+    }
+
+    /* COLUMNA DE IMAGEN (Derecha) */
+    .manifesto-image {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        display: flex;
+        justify-content: flex-start;
+        /* Se mantiene pegada al centro */
+        align-self: start;
+    }
+
+    .manifesto-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 30px;
+        object-fit: cover;
+        margin-top: 0;
+        /* La imagen ocupará su 50% natural, deteniéndose antes si es necesario */
+    }
+
+    /* AJUSTES TIPOGRÁFICOS */
+    .main-title {
+        font-size: 3.6rem;
+        line-height: 1.2;
+        margin-bottom: 10px;
+    }
+
+    .sub-text {
+        font-size: 1.7rem;
+        margin-bottom: 5px;
+    }
+
+    .manifesto-body p {
+        font-family: 'Noto Sans', sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.3;
+    }
+}
+
+
+/* =========================================
+   ESTILOS GENERALES (BASE & MÓVIL)
+   ========================================= */
+.philosophy {
+    background-color: #000;
+    color: #fff;
+    padding: 40px 20px;
+    overflow: hidden;
+}
+
+.container-philosophy {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 100%;
+}
+
+.philosophy-title {
+    order: 1;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    /* Centrado en móvil */
+    margin: 0;
+}
+
+.philosophy-images {
+    order: 2;
+    position: relative;
+    height: 320px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.img-base {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 206px;
+    height: 289px;
+    object-fit: cover;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.img-overlay {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    width: 172px;
+    height: 213px;
+    object-fit: cover;
+    border-radius: 15px;
+    z-index: 2;
+    /* Sin borde en móvil también para consistencia */
+    border: none;
+}
+
+.philosophy-content {
+    display: contents;
+    /* Permite que la lista herede el orden del flex padre */
+}
+
+.philosophy-list {
+    order: 3;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    /* Centra el bloque en móvil */
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Items alineados a la izq dentro del bloque centrado */
+}
+
+.philosophy-list li {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.philosophy-list li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   ESCRITORIO (A partir de 1024px)
+   ========================================= */
+@media (min-width: 1024px) {
+    .philosophy {
+        padding: 20px 0 80px;
+    }
+
+    .container-philosophy {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto auto;
+        align-items: start;
+        /* Sube todo al tope superior */
+        gap: 0;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .philosophy-images {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        height: 550px;
+        max-width: none;
+        margin: 0;
+        padding-top: 60px;
+        
+    }
+
+    .img-base {
+        width: 400px;
+        height: 480px;
+        position: relative;
+    }
+
+    .img-overlay {
+        width: 255px;
+        height: 333px;
+        top: 125px;
+        left: 365px;
+        /* Desfase para invadir el centro */
+        border: none;
+        /* Sin borde como pediste */
+    }
+
+        /* Ahora controlamos el contenedor de texto como uno solo */
+        .philosophy-content {
+            display: flex;
+            /* Cambiamos de contents a flex para agrupar */
+            flex-direction: column;
+            grid-column: 2;
+            padding-left: 80px;
+            /* Ajusta este valor para acercar/alejar del centro */
+            
+        }
+
+    /* BLOQUE DERECHO: Título y Lista pegados arriba */
+    .philosophy-title {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: left;
+        /* Alineado a la izquierda en escritorio */
+        font-size: 3rem;
+        margin-top: 0;
+        /* Asegura que suba al tope */
+        margin-bottom: 25px;
+        /* Poca separación con la lista */
+        padding-left: 60px;
+        line-height: 1;
+    }
+
+    .philosophy-list {
+        grid-column: 2;
+        grid-row: 2;
+        margin: 0;
+        /* Quitamos el centrado de móvil */
+        padding-left: 60px;
+        /* Alineado con el H2 */
+        display: block;
+    }
+
+    .philosophy-list li {
+        font-size: 1.15rem;
+        margin-bottom: 8px;
+    }
+}
+
+/* --- SECCIÓN CLIENTES --- */
+.clients {
+    background-color: #0d141a;
+    color: #fff;
+    padding: 40px 50px 30px;
+    text-align: center;
+}
+
+.container-clients {
+    max-width: 1224px;
+    margin: 0 auto;
+}
+
+.clients-title {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.clients-description {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.3;
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    color: #cccccc;
+}
+
+/* --- GRID DE CARDS --- */
+.clients-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.client-card {
+    background-color: #fff;
+    border-radius: 20px 20px 0 0; /* Solo arriba */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.card-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-content {
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: left; /* Alineación de texto en la card */
+}
+
+.card-link {
+    font-family: 'GalanoGrotesque', sans-serif; /* Asegúrate de tener la fuente cargada */
+    font-weight: 800;
+    text-decoration: none;
+    color: #000;
+    font-size: 1.2rem;
+    letter-spacing: .8px;
+}
+
+.card-category {
+    font-family: 'GalanoGrotesque Medium', sans-serif;
+    color: #666;
+    font-size: 1rem;
+    text-transform: none;
+}
+
+/* --- BOTÓN PORTFOLIO --- */
+.btn-portfolio {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-portfolio:hover {
+    background-color: #e0e0e0;
+}
+
+/* --- ESCRITORIO --- */
+@media (min-width: 1024px) {
+    .clients {
+        padding: 60px 0;
+    }
+
+    .clients-grid {
+        flex-direction: row; /* Cambio a horizontal */
+        justify-content: space-between;
+    }
+
+    .clients-description {
+        font-size: 1.1rem;
+    }
+
+    .client-card {
+        flex: 1; /* Todas las cards miden lo mismo */
+    }
+
+    .card-image {
+        height: 300px; /* Más altas en escritorio */
+    }
+
+    .clients-title {
+        font-size: 2.5rem;
+    }
+}
+
+
+/* --- CONFIGURACIÓN MÓVIL --- */
+.target-section {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 50px;
+}
+
+.container-target {
+    display: flex;
+    flex-direction: column;   
+}
+
+.target-title {
+    order: 1;
+    /* PRIMERO */
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 2.6rem;
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+.target-image {
+    order: 2;
+    /* SEGUNDO */
+}
+
+.target-left-col {
+    display: contents;
+}
+
+.target-image img {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+}
+
+.target-text {
+    order: 3;
+    /* TERCERO */
+   padding-left: 20px;
+}
+
+.target-text p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    max-width: 95%;
+    font-weight: 700;
+    padding-top: 30px;
+    margin-bottom: 25px;
+}
+
+.target-list {
+    list-style: none;
+    padding: 0;
+}
+
+.target-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.target-list li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+/* --- CONFIGURACIÓN ESCRITORIO (1024px) --- */
+@media (min-width: 1024px) {
+    .target-section{
+        padding: 40px 0;
+    }
+    .container-target {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* 50/50 */        
+        max-width: 1224px;
+        margin: 0 auto;
+        gap: 80px;        
+        align-items: start;
+        /* TODO AL TOP */
+    }
+
+    .target-left-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 40px;
+        /* Ajuste milimétrico para nivelar con la imagen */
+    }
+
+    .target-title {
+        line-height: 1;
+        font-size: 3rem;
+        margin: 0 0 10px 0;
+        
+    }
+
+    .target-text {
+        grid-column: 1;
+        grid-row: 2;
+        padding-top: 0;
+        margin-top: 0;
+        padding-left: 0;
+    }
+
+    .target-text p {
+        margin: 0 0 20px 0;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.3;
+        max-width: 55%;
+    }
+
+                .target-list li {
+                    margin-bottom: 10px;
+                }
+
+    .target-image {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        /* La imagen ocupa el alto de las dos filas de texto */
+        align-self: self-start;
+    }
+
+    .target-image img {
+        width: 100%;
+        display: block;
+        border-radius: 40px;
+        /* Bordes más curvos en escritorio */
+    }
+}
+
+/* --- CONFIGURACIÓN MÓVIL (BUILD) --- */
+.build-section {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 50px;
+}
+
+.container-build {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ORDEN MÓVIL: 1. Imagen, 2. H2, 3. Lista */
+.build-image {
+    order: 1;
+    margin-bottom: 25px;
+}
+
+.build-title {
+    order: 2;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 2.6rem;
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+.build-left-col {
+    display: contents;
+    /* Permite que el H2 y el texto se ordenen individualmente */
+}
+
+.build-text {
+    order: 3;
+    padding-left: 20px;
+}
+
+.build-image img {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+}
+
+.build-list {
+    list-style: none;
+    padding: 0;
+}
+
+.build-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.build-list li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+/* --- CONFIGURACIÓN ESCRITORIO (1024px) --- */
+@media (min-width: 1024px) {
+    .build-section {
+        padding: 40px 0;
+    }
+
+    .container-build {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* 50/50 */
+        max-width: 1224px;
+        margin: 0 auto;
+        gap: 80px;
+        align-items: start;
+    }
+
+    /* ESCRITORIO: Imagen a la Izquierda (Columna 1) */
+    .build-image {
+        grid-column: 1;
+        grid-row: 1;
+        order: unset;
+        /* Desactiva el orden de móvil */
+        margin-bottom: 0;
+    }
+
+    .build-image img {
+        border-radius: 40px;
+    }
+
+    /* ESCRITORIO: Texto a la Derecha (Columna 2) */
+    .build-left-col {
+        grid-column: 2;
+        grid-row: 1;
+        display: flex;
+        flex-direction: column;
+        padding-top: 40px;
+        /* Nivelado con la imagen */
+    }
+
+    .build-title {
+        font-size: 3rem;
+        line-height: 1;
+        margin: 0 0 20px 0;
+        padding-bottom: 0;
+    }
+
+    .build-text {
+        padding-left: 0;
+    }
+
+    .build-list li {
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+}
+
+/* --- CONFIGURACIÓN MÓVIL --- */
+.contact-section {
+    background-color: #000;
+    color: #fff;
+    padding: 50px;
+    text-align: center;
+}
+
+.container-contact {
+    max-width: 100%;
+}
+
+.contact-title {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.contact-subtitle {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    /* Las etiquetas se alinean a la izquierda */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 17px;
+    border-radius: 15px;
+    /* Bordes redondeados consistentes */
+    border: none;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: .9rem;
+    background-color: #fff;
+    color: #333;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #aaa;
+}
+
+/* Botón de envío tipo píldora */
+.btn-send {
+    align-self: center;
+    /* Centrado en móvil */
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 50px;
+    border-radius: 30px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+/* --- CONFIGURACIÓN ESCRITORIO (1024px) --- */
+@media (min-width: 1024px) {
+    .contact-section {
+        padding: 100px 0;
+    }
+
+    .container-contact {
+        max-width: 500px;
+        /* Respetando el ancho máximo unificado */
+        margin: 0 auto;
+    }
+
+    .contact-title {
+        font-size: 2.6rem;
+    }
+
+    .contact-subtitle {
+        font-size: 1rem;
+        margin-bottom: 50px;
+    }
+
+    .contact-form {
+        max-width: 700px;
+        /* Centramos el formulario en escritorio para que no sea eterno */
+    }
+
+    .form-group input,
+    .form-group textarea {            
+        padding: 16px 20px;           
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+}
+
+/* --- CONFIGURACIÓN MÓVIL (FOOTER) --- */
+.footer-section {
+    background-color: #3B3B3B;
+    color: #fff;
+    padding: 40px 40px 30px;
+    /* Padding generoso a los lados */
+}
+
+.container-footer {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Espacio entre Social Media y Contact */
+}
+
+.footer-h3 {
+    font-family: 'GalanoGrotesque', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.footer-p,
+.footer-link {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.2;
+    margin: 0 0 15px 0;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-p{
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.footer-link {
+    text-decoration: underline;
+    /* Estilo de link en la imagen */
+}
+
+.social-icons {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.social-icons a{
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.social-icons a:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.social-icons a:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.social-icons a:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.social-icons img {
+    width: 26px;
+    /* Tamaño estándar de iconos */
+    height: auto;
+    filter: brightness(0) invert(1);
+    /* Convierte iconos negros a blancos */
+}
+
+.footer-bottom {
+    margin-top: 60px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* --- CONFIGURACIÓN ESCRITORIO (1024px) --- */
+@media (min-width: 1024px) {
+    .footer-section {
+        padding: 60px 0 40px;
+    }
+
+    .container-footer {
+        max-width: 1224px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .footer-content {
+        flex-direction: row;
+        /* Alineación horizontal */
+        justify-content: flex-start;
+        gap: 150px;
+        /* Gran espacio entre columnas como en la imagen */
+    }
+
+    .footer-col {
+        flex: 0 1 auto;
+    }
+
+    .footer-h3 {
+        font-size: 2rem;
+    }
+
+    .footer-bottom {
+        margin-top: 80px;
+    }
+}
+
+/* --- 1. CONFIGURACIÓN BASE (ESTADO OCULTO) --- */
+/* Aplicamos esto a los elementos que queremos que aparezcan con scroll */
+.hero-content,
+.manifesto-header,
+.philosophy-title,
+.clients-title,
+.target-title,
+.build-title,
+.contact-title,
+.footer-h3,
+.sub-text,
+.manifesto-body,
+.clients-description,
+.target-text,
+.contact-subtitle,
+.footer-p,
+.manifesto-image,
+.philosophy-images,
+.target-image,
+.build-image,
+.client-card,
+.philosophy-list li,
+.target-list li,
+.build-list li,
+.hero-btns a,
+.social-icons a {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+}
+
+/* --- 2. ESTADO ACTIVO (REVELADO) --- */
+/* Esta clase la pondrá el main.js al detectar el scroll */
+.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* --- 3. DELAYS ESCALONADOS (EFECTO CASCADA) --- */
+
+/* Los párrafos aparecen un poco después que los títulos */
+.sub-text.is-visible,
+.manifesto-body.is-visible,
+.target-text.is-visible,
+.contact-subtitle.is-visible,
+.footer-p.is-visible {
+    transition-delay: 0.2s;
+}
+
+/* Las imágenes aparecen con un toque de fuerza */
+.manifesto-image.is-visible,
+.philosophy-images.is-visible,
+.target-image.is-visible,
+.build-image.is-visible {
+    transition-delay: 0.3s;
+}
+
+/* Listas: Cada item aparece uno tras otro */
+.philosophy-list li.is-visible,
+.target-list li.is-visible,
+.build-list li.is-visible {
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Generamos el delay para los primeros 5 items de cualquier lista */
+li.is-visible:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+li.is-visible:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+li.is-visible:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+li.is-visible:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+li.is-visible:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+/* Cards de Clientes: Aparecen en secuencia */
+.client-card.is-visible:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.client-card.is-visible:nth-child(2) {
+    transition-delay: 0.3s;
+}
+
+.client-card.is-visible:nth-child(3) {
+    transition-delay: 0.5s;
+}
+
+/* --- 4. MICRO-INTERACCIONES (HOVERS) --- */
+.client-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.client-card:hover {
+    transform: translateY(-10px);
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+
+
+/* --- PORTFOLIO HERO --- */
+.portfolio-hero {
+    background-color: #000;
+    padding: 80px 20px 40px;
+    text-align: center;
+}
+
+.container-hero {
+    max-width: 100%;
+    /* Evita desborde en móvil */
+    margin: 0 auto;
+}
+
+.portfolio-title {
+    font-family: 'Noto Sans', sans-serif;
+    /* Cambio a Noto Sans */
+    font-size: clamp(2.5rem, 8vw, 3rem);
+    /* Tamaño fluido para que no desborde */
+    font-weight: 800;
+    color: #fff;
+    margin-top: 90px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.portfolio-subtitle {
+    font-family: 'Noto Sans', sans-serif;
+    color: #fff;
+    font-size: .9rem;
+    line-height: 1.5;
+    margin: 0 auto;
+    width: 80%;
+}
+
+/* --- GRID DE CLIENTES --- */
+.container-portfolio {
+    max-width: 1224px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Móvil: 1 columna */
+    gap: 40px;
+}
+
+.portfolio-card {
+    width: 100%;
+}
+
+.portfolio-img-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.portfolio-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.portfolio-info h3 {
+    font-family: 'GalanoGrotesque', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.portfolio-info p {
+    font-family: 'Noto Sans', sans-serif;
+    color: #ccc;
+    font-size: 1rem;
+}
+
+/* Eliminar estilos de enlace por defecto en las cards */
+.portfolio-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* ESTADO INICIAL PARA ANIMACIÓN (Si no lo tienes, no animará) */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.24, 1, 0.32, 1);
+}
+
+/* ESTADO VISIBLE */
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- PAGINACIÓN --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 60px 0 20px;
+}
+
+.page-num,
+.arrow {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.page-num.active {
+    color: #65646b;
+    /* El color azul/morado de tu captura */
+}
+
+.arrow {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* --- CONFIGURACIÓN ESCRITORIO --- */
+@media (min-width: 1024px) {
+    .portfolio-hero {
+        
+        padding: 120px 20px 60px;
+    }
+
+    .portfolio-subtitle {
+        max-width: 640px;
+        /* Límite solicitado */
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 Columnas */
+        grid-template-rows: repeat(6, auto);
+        /* 6 Filas */
+        column-gap: 60px;
+        row-gap: 100px;
+    }
+        .pagination {
+            margin: 60px 0;
+        }
+}
+
+.portfolio-card {
+    cursor: pointer;
+    transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-10px);
+    /* Elevación sutil */
+}
+
+.portfolio-card:hover img {
+    filter: brightness(1.1);
+    /* Ilumina ligeramente la imagen */
+}
+
+/* --- RESET Y BASE --- */
+.case-study-page {
+    background-color: #000;
+    color: #fff;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    /* Espacio para el header */
+    overflow-x: hidden;
+}
+
+/* --- BLOQUE 1: ENCABEZADO (Móvil y Escritorio) --- */
+.case-header {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.container-center {
+    width: 100%;
+    max-width: 1224px;
+}
+
+.case-title {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 2.3rem;
+    /* Tamaño base móvil */
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+.case-description-wrapper {
+    max-width: 640px;
+    /* Límite solicitado */
+    margin: 0 auto;
+    /* Centra el bloque de texto */
+}
+
+.case-subtitle {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+/* --- BLOQUE 2: IMAGEN HERO --- */
+.container-1224 {
+    max-width: 1224px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.case-hero-image {
+    margin-bottom: 80px;
+}
+
+.case-hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* --- BLOQUE 3: GRID RESPONSIVE (Escritorio aprovechado) --- */
+.grid-2-cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 1 col en móvil */
+    gap: 40px;
+    align-items: center;
+}
+
+.case-image-col img {
+    width: 100%;
+    height: auto;
+}
+
+/* --- CONFIGURACIÓN ESCRITORIO --- */
+@media (min-width: 1024px) {
+    .case-header {
+        padding: 100px 20px 80px;
+    }
+
+    .case-title {
+        font-size: 3rem;
+        /* Tamaño grande escritorio */
+    }
+
+    .grid-2-cols {
+        grid-template-columns: 1fr 1fr;
+        /* 2 col aprovechando 1224px */
+        gap: 80px;
+    }
+}
+
+/* --- ESTILOS COMPLEMENTARIOS --- */
+
+.case-footer-nav {
+    padding: 80px 20px 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.back-link {
+    font-family: 'Noto Sans', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-link .arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.back-link:hover {
+    opacity: 1;
+    color: #5143d9;
+    /* Usando el color acento del portafolio */
+}
+
+.back-link:hover .arrow {
+    transform: translateX(-5px);
+    /* Pequeña animación al pasar el mouse */
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVE --- */
+@media (max-width: 768px) {
+    .case-title {
+        font-size: 2.5rem;
+        /* Evita desborde en móvil */
+    }
+
+    .case-footer-nav {
+        padding: 60px 20px 80px;
+    }
+}
+
+/* Asegura que los botones parezcan clickeables */
+.pagination a {
+    cursor: pointer;
+    user-select: none;
+    /* Evita que se seleccione el texto al hacer click rápido */
+    padding: 10px 15px;
+    /* Área de click más cómoda */
+}
+
+/* Efecto Hover */
+.page-num:hover,
+.arrow:hover {
+    color: #fff;
+    opacity: 1;
+}
+
+
+/* --- ESTILOS PÁGINA ABOUT --- */
+.about-page {
+    background-color: #000;
+    color: #fff;
+    padding-top: 100px;
+    /* Espacio para el header fijo */
+    min-height: 100vh;
+}
+
+.container-about {
+    max-width: 1224px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+/* 1. Estilos del Título (Mobile) - SIN CAMBIOS */
+.about-title-col h1 {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 300;
+    font-size: 2.1rem;
+    margin-bottom: 30px;
+    line-height: 1.1;
+}
+
+.about-title-col .bold-brand {
+    font-weight: 800;
+}
+
+/* 2. Estilos del Texto (Mobile) - SIN CAMBIOS */
+.about-text-col {
+    font-family: 'Noto Sans', sans-serif;
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 40px;
+}
+
+.about-text-col p {
+    margin-bottom: 10px;
+}
+
+/* 3. Estilos de la Imagen (Mobile) - MODIFICADO */
+.about-image-wrapper {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 40px;
+
+    /* NUEVO: Fuerza la relación 3 de ancho por 1 de alto */
+    aspect-ratio: 3 / 2;
+}
+
+.about-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    /* CAMBIO: Debe ser 100% para llenar el aspect-ratio */
+    display: block;
+    object-fit: cover;
+    /* IMPORTANTE: Recorta la imagen para que no se deforme */
+}
+
+/* --- MEDIA QUERY: ESCRITORIO --- */
+@media (min-width: 1024px) {
+    .about-hero {
+        padding-top: 90px;
+    }
+
+    .about-content-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 60px;
+    }
+
+    .about-title-col {
+        width: 40%;
+    }
+
+    .about-title-col h1 {
+        font-size: 3rem;
+    }
+
+    .about-text-col {
+        width: 50%;
+        padding-top: 15px;
+        font-size: 1.1rem;
+    }
+
+    /* Imagen Escritorio - RESET Y AJUSTE */
+    .about-image-wrapper {
+        height: 600px;
+        aspect-ratio: auto;
+        /* Ignoramos la regla 3:1 de móvil aquí */
+    }
+
+    .about-image-wrapper img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* --- SECCIÓN VISIT US --- */
+.visit-section {
+    padding: 80px 0;
+    /* Espaciado general */
+    background-color: #000;
+    /* Fondo negro continuo */
+}
+
+/* El Layout Mágico con Grid */
+.visit-grid-layout {
+    display: grid;
+    gap: 40px;
+
+    /* DEFINICIÓN MÓVIL (1 Columna, Orden Específico) */
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "map"
+        "details";
+}
+
+/* Asignación de Áreas (Para que el HTML sepa dónde ir) */
+.visit-header {
+    grid-area: header;
+}
+
+.visit-map-wrapper {
+    grid-area: map;
+}
+
+.visit-details {
+    grid-area: details;
+}
+
+/* --- ESTILOS DE TEXTO (Heredando estética Mobile First) --- */
+.visit-title {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 800;
+    /* Bold fuerte */
+    font-size: 2.1rem;
+    margin-bottom: 20px;
+    color: #fff;
+    line-height: 1.1;
+}
+
+.visit-intro {
+    font-family: 'Noto Sans', sans-serif;
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 0;
+    /* El margen lo da el gap del grid */
+}
+
+/* Subtítulos (Address / Opening Hours) */
+.visit-subtitle {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    /* Separación entre bloques de detalles */
+}
+
+/* El primer subtítulo no necesita margen superior extra */
+.detail-block:first-child .visit-subtitle {
+    margin-top: 0;
+}
+
+.visit-text {
+    font-family: 'Noto Sans', sans-serif;
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* --- ESTILOS DEL MAPA --- */
+.visit-map-wrapper {
+    width: 100%;
+    height: 300px;
+    /* Altura fija en móvil */
+    border-radius: 20px;
+    /* Coherente con la imagen de arriba */
+    overflow: hidden;
+}
+
+.visit-map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(20%) invert(92%) contrast(83%);
+    /* Opcional: Mapa oscuro */
+}
+
+/* --- MEDIA QUERY: ESCRITORIO --- */
+@media (min-width: 1024px) {
+    .visit-grid-layout {
+        /* 2 Columnas: Izquierda (40%) - Derecha (Resto) */
+        grid-template-columns: 40% 1fr;
+        gap: 80px;
+        /* Más espacio en escritorio */
+
+        /* REORDENAMIENTO PARA ESCRITORIO */
+        /* Columna Izq: Header arriba, Details abajo. Columna Der: Map ocupa todo */
+        grid-template-areas:
+            "header map"
+            "details map";
+    }
+
+    .visit-title {
+        font-size: 2.6rem;
+        /* Título grande en escritorio */
+    }
+
+    .visit-intro {
+        font-size: 1em;
+    }
+
+    .visit-map-wrapper {
+        height: 100%;
+        /* El mapa se estira para cubrir todo el alto del contenido izquierdo */
+        min-height: 500px;
+        /* Altura mínima de seguridad */
+    }
+
+    .visit-subtitle {
+        margin-top: 40px;
+        font-size: 1.5rem;
+    }
+}
+
+
+/* --- ESTILOS BASE PÁGINA CONTACTO --- */
+.contact-page {
+    background-color: #000;
+    color: #fff;
+    padding-top: 120px; /* Espacio para el header */
+}
+
+.container-1224 {
+    max-width: 1224px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+/* --- GRID LAYOUT RECONSTRUIDO --- */
+.contact-grid-layout {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
+    /* Orden Móvil: Info -> Form -> Imagen */
+    grid-template-areas: 
+        "info"
+        "form"
+        "image";
+}
+
+.contact-info-col { grid-area: info; text-align: center; }
+.contact-form-col { grid-area: form; }
+.contact-image-wrapper { grid-area: image; }
+
+/* --- ESTILOS DEL FORMULARIO (Tu diseño de la Home) --- */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 17px;
+    border-radius: 15px;
+    border: none;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: .9rem;
+    background-color: #fff;
+    color: #333;
+}
+
+.btn-send {
+    align-self: center; /* Centrado en móvil según tu diseño */
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 50px;
+    border-radius: 30px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+/* --- TÍTULOS Y TEXTO --- */
+.contact-title {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 2.1rem; /* Ajustado para móvil */
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contact-subtitle {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* --- IMAGEN CONTACTO (Móvil: Cuadrada) --- */
+.contact-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.contact-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- CONFIGURACIÓN ESCRITORIO (1024px) --- */
+@media (min-width: 1024px) {
+    .container-1224 {
+        padding-top: 100px;
+    }
+    .contact-grid-layout {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "info form"
+            "image image"; /* Imagen abarca las 2 columnas abajo */
+        column-gap: 80px;
+        row-gap: 100px;
+        align-items: start;
+    }
+
+    .contact-info-col {
+        text-align: left; /* Título a la izquierda en escritorio */
+    }
+
+    .contact-title {
+        font-size: 3rem;
+    }
+
+    .contact-subtitle {
+        font-size: 1rem;
+    }
+
+    .btn-send {
+        align-self: flex-start; /* Botón a la izquierda en escritorio */
+    }
+
+    /* Imagen Escritorio: Relación 3 a 2 aprovechando los 1224px */
+    .contact-image-wrapper {
+        aspect-ratio: 3 / 2;
+    }
+}
