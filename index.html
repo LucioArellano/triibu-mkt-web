@@ -182,7 +182,7 @@
         <h2 class="contact-title">LET'S WORK TOGETHER</h2>
         <p class="contact-subtitle">Leave us a message and we'll get in touch with you.</p>
 
-        <form class="contact-form">
+        <form id="contactForm" action="send-mail.php" method="POST" class="contact-form">
             <div class="form-group">
                 <label for="name">Name*</label>
                 <input type="text" id="name" name="name" placeholder="Name" required>
@@ -199,6 +199,8 @@
             </div>
 
             <button type="submit" class="btn-send">Send</button>
+
+            <p id="form-status" style="display: none; margin-top: 15px; font-weight: bold;"></p>
         </form>
     </div>
 </section>

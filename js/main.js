@@ -300,3 +300,65 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 250);
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const form = document.getElementById("contactForm");
+    const statusText = document.getElementById("form-status");
+    const submitBtn = form ? form.querySelector(".btn-send") : null;
+
+    if (form) {
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault(); // Stop recarga
+
+            const formData = new FormData(form);
+            
+            // Feedback Visual
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+            statusText.style.display = "none";
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // ÉXITO (Código 200)
+                    statusText.innerText = result.message; // "Thanks!..."
+                    statusText.style.color = "#4CAF50"; 
+                    statusText.style.display = "block";
+                    form.reset();
+                } else {
+                    // ERROR (Código 400 o 500)
+                    statusText.innerText = result.message;
+                    statusText.style.color = "#FF5722";
+                    statusText.style.display = "block";
+                }
+            } catch (error) {
+                // ERROR DE RED
+                statusText.innerText = "Connection error. Please try again later.";
+                statusText.style.color = "#FF0000";
+                statusText.style.display = "block";
+            } finally {
+                // RESTAURAR
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+                
+                // Borrar mensaje de éxito tras 5 segundos
+                if (statusText.style.color === "rgb(76, 175, 80)") {
+                    setTimeout(() => {
+                        statusText.style.display = "none";
+                    }, 5000);
+                }
+            }
+        });
+    }
+});

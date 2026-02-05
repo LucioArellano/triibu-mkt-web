@@ -21,7 +21,7 @@
                 </div>
     
                 <div class="contact-form-col reveal-on-scroll">
-                    <form class="contact-form">
+                    <form id="contactForm" action="send_mail.php" method="POST" class="contact-form">
                         <div class="form-group">
                             <label for="name">Name*</label>
                             <input type="text" id="name" name="name" placeholder="Name" required>
@@ -38,6 +38,7 @@
                         </div>
     
                         <button type="submit" class="btn-send">Send</button>
+                        <p id="form-status" style="display: none; margin-top: 15px; font-weight: bold;"></p>
                     </form>
                 </div>
     
