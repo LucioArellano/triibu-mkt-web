@@ -301,63 +301,79 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+
+/* --- FORMULARIO DE CONTACTO (MODO ESPERA/SIMULACIÓN) --- */
 document.addEventListener("DOMContentLoaded", function() {
     
     const form = document.getElementById("contactForm");
     const statusText = document.getElementById("form-status");
     const submitBtn = form ? form.querySelector(".btn-send") : null;
 
+    // --- CONFIGURACIÓN ---
+    // Como aún no tenemos el Webhook, lo dejamos vacío ("").
+    // El script detectará esto y solo simulará el envío.
+    const GHL_WEBHOOK_URL = ""; 
+
     if (form) {
         form.addEventListener("submit", async function(event) {
-            event.preventDefault(); // Stop recarga
+            event.preventDefault(); // Evita recarga de página
 
-            const formData = new FormData(form);
-            
-            // Feedback Visual
+            // 1. Feedback Visual (El usuario ve que algo pasa)
             const originalBtnText = submitBtn.innerText;
             submitBtn.innerText = "Sending...";
             submitBtn.disabled = true;
             statusText.style.display = "none";
 
+            // 2. Capturar datos
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // 3. LÓGICA DE ENVÍO
             try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    // ÉXITO (Código 200)
-                    statusText.innerText = result.message; // "Thanks!..."
-                    statusText.style.color = "#4CAF50"; 
-                    statusText.style.display = "block";
-                    form.reset();
+                if (GHL_WEBHOOK_URL === "") {
+                    // === MODO SIMULACIÓN (Backend Pendiente) ===
+                    console.log("⚠️ Backend no configurado aún. Datos capturados:", data);
+                    
+                    // Simulamos una espera de 1.5 segundos para parecer real
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    // Mostramos éxito simulado
+                    statusText.innerText = "Thanks! (Demo Mode: Form works visually)";
+                    statusText.style.color = "#4CAF50"; // Verde
                 } else {
-                    // ERROR (Código 400 o 500)
-                    statusText.innerText = result.message;
-                    statusText.style.color = "#FF5722";
-                    statusText.style.display = "block";
+                    // === MODO REAL (Cuando pongas la URL mañana) ===
+                    const response = await fetch(GHL_WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    // Aquí procesaríamos la respuesta real...
+                    statusText.innerText = "Thanks! We will be in touch shortly.";
+                    statusText.style.color = "#4CAF50"; 
                 }
+
+                // Mostrar mensaje final
+                statusText.style.display = "block";
+                form.reset();
+
             } catch (error) {
-                // ERROR DE RED
-                statusText.innerText = "Connection error. Please try again later.";
+                console.error("Error:", error);
+                statusText.innerText = "Connection error. Please try again.";
                 statusText.style.color = "#FF0000";
                 statusText.style.display = "block";
             } finally {
-                // RESTAURAR
+                // Restaurar botón
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
                 
-                // Borrar mensaje de éxito tras 5 segundos
-                if (statusText.style.color === "rgb(76, 175, 80)") {
-                    setTimeout(() => {
-                        statusText.style.display = "none";
-                    }, 5000);
-                }
+                // Ocultar mensaje a los 5 segundos
+                setTimeout(() => {
+                    statusText.style.display = "none";
+                }, 5000);
             }
         });
     }
