@@ -248,21 +248,21 @@ body {
     .hero-content {
         /* Aquí aplicamos el margen de 50px que pediste.
            Usamos padding para que no se desborde la pantalla */
-        padding: 0 50px; 
+        padding: 0 30px; 
         max-width: 100%;
     }
 
     .hero-content h1 {
-        font-size: 2.5rem; /* Ajuste de tamaño */
+        font-size: 1.7rem; /* Ajuste de tamaño */
         margin-top: 0;     /* Limpieza de márgenes */
         margin-bottom: 20px;
         line-height: 1.2;
     }
 
     .hero-content p {
-        font-size: 1.1rem;
-        max-width: 100%; /* Que ocupe el espacio disponible */
-        line-height: 1.5;
+        font-size: 1rem;
+        max-width: 87%; /* Que ocupe el espacio disponible */
+        line-height: 1.9;
     }
 }
 
