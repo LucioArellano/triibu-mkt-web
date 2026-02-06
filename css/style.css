@@ -210,33 +210,30 @@ body {
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
     padding: 0 20px;
 }
 
 .hero-content h1 {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 3.2rem; /* Tamaño grande para el título */    
-    margin-bottom: 90px;
-    font-weight: 700;
+    font-size: 4.5rem; /* Tamaño grande para el título */    
+    margin-bottom: 30px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+
 }
 
 .hero-content p {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 1rem;
+    font-size: 2.1rem;
+    font-weight: 400;
     line-height: 1.6;
     margin-bottom: 40px;
     opacity: 0.9;
-    max-width: 480px;
+    max-width: 1000px;
     margin-left: auto;        
     margin-right: auto;
-}
-
-/* --- BOTONES --- */
-.hero-btns {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
 }
 
 .btn {
@@ -281,13 +278,14 @@ body {
         max-width: 380px;
     }
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         margin-top: 100px;
         margin-bottom: 20px;
     }
     .hero-content p {
         max-width: 90%;            
-        font-size: 1rem;
+        font-size: 1.1rem;
+        padding: 0 20px;
     }
     .hero-btns {
         flex-direction: column;
@@ -647,16 +645,16 @@ body {
 .clients {
     background-color: #0d141a;
     color: #fff;
-    padding: 40px 50px 30px;
+    padding: 60px 20px;
     text-align: center;
 }
 
-.container-clients {
+.container-clients-section {
     max-width: 1224px;
     margin: 0 auto;
 }
 
-.clients-title {
+.clients-title-section {
     font-family: 'Noto Sans', sans-serif;
     font-weight: 700;
     font-size: 1.8rem;
@@ -668,14 +666,14 @@ body {
 .clients-description {
     font-family: 'Noto Sans', sans-serif;
     font-size: 1rem;
-    line-height: 1.3;
-    max-width: 1000px;
+    line-height: 1.6;
+    max-width: 800px;
     margin: 0 auto 40px;
     color: #cccccc;
 }
 
 /* --- GRID DE CARDS --- */
-.clients-grid {
+.clients-grid-section {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -684,7 +682,8 @@ body {
 
 .client-card {
     background-color: #fff;
-    border-radius: 20px 20px 0 0; /* Solo arriba */
+    border-radius: 20px 20px 0 0;
+    /* Solo arriba */
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -703,22 +702,24 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    text-align: left; /* Alineación de texto en la card */
+    text-align: left;
+    /* Alineación de texto en la card */
 }
 
 .card-link {
-    font-family: 'GalanoGrotesque', sans-serif; /* Asegúrate de tener la fuente cargada */
-    font-weight: 800;
+    font-family: 'GalanoGrotesque', sans-serif;
+    /* Asegúrate de tener la fuente cargada */
+    font-weight: 700;
     text-decoration: none;
     color: #000;
-    font-size: 1.2rem;
-    letter-spacing: .8px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
 .card-category {
-    font-family: 'GalanoGrotesque Medium', sans-serif;
+    font-family: 'GalanoGrotesque', sans-serif;
     color: #666;
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-transform: none;
 }
 
@@ -743,31 +744,29 @@ body {
 /* --- ESCRITORIO --- */
 @media (min-width: 1024px) {
     .clients {
-        padding: 60px 0;
+        padding: 100px 0;
     }
 
-    .clients-grid {
-        flex-direction: row; /* Cambio a horizontal */
+    .clients-grid-section {
+        flex-direction: row;
+        /* Cambio a horizontal */
         justify-content: space-between;
     }
 
-    .clients-description {
-        font-size: 1.1rem;
-    }
-
     .client-card {
-        flex: 1; /* Todas las cards miden lo mismo */
+        flex: 1;
+        /* Todas las cards miden lo mismo */
     }
 
     .card-image {
-        height: 300px; /* Más altas en escritorio */
+        height: 300px;
+        /* Más altas en escritorio */
     }
 
-    .clients-title {
+    .clients-title-section {
         font-size: 2.5rem;
     }
 }
-
 
 /* --- CONFIGURACIÓN MÓVIL --- */
 .target-section {
