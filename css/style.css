@@ -2222,3 +2222,90 @@ li.is-visible:nth-child(5) {
         height: 120px;
     }
 }
+
+/* =========================================
+   PÁGINA DE ÉXITO (SUCCESS PAGE)
+   ========================================= */
+
+.success-section {
+    background-color: #000;
+    color: #fff;
+    /* Ocupa toda la altura menos el header aprox, pero mínimo toda la pantalla */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 60px;
+    /* Padding top alto para compensar el header fixed */
+    text-align: center;
+}
+
+.success-content {
+    max-width: 800px;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+    /* Una pequeña animación de entrada */
+}
+
+.success-title {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 3rem;
+    /* Grande e impactante */
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.1;
+}
+
+.success-description {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2rem;
+    color: #cccccc;
+    /* Un gris claro elegante */
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.redirect-timer {
+    margin-top: 30px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Animación simple de aparición */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- RESPONSIVE (MÓVIL) --- */
+@media (max-width: 768px) {
+    .success-section {
+        padding-top: 100px;
+        /* Ajuste para header móvil */
+    }
+
+    .success-title {
+        font-size: 2rem;
+        /* Más pequeño en móvil */
+    }
+
+    .success-description {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    /* Ocultamos el salto de línea forzado en móvil para que fluya el texto */
+    .desktop-break {
+        display: none;
+    }
+}

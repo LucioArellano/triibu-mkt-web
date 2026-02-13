@@ -186,7 +186,8 @@
         <h2 class="contact-title">LET'S WORK TOGETHER</h2>
         <p class="contact-subtitle">Leave us a message and we'll get in touch with you.</p>
 
-        <form id="contactForm" action="send-mail.php" method="POST" class="contact-form">
+        <form id="contactForm" action="contact.php" method="POST" class="contact-form">
+            <input type="hidden" name="origin_page" value="index.html">
             <div class="form-group">
                 <label for="name">Name*</label>
                 <input type="text" id="name" name="name" placeholder="Name" required>
