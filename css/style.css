@@ -2231,7 +2231,7 @@ li.is-visible:nth-child(5) {
     background-color: #000;
     color: #fff;
     /* Ocupa toda la altura menos el header aprox, pero mínimo toda la pantalla */
-    min-height: 100vh;
+    min-height: 100vh !important;
     display: flex;
     align-items: center;
     justify-content: center;
