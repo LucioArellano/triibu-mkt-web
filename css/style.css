@@ -2232,12 +2232,12 @@ li.is-visible:nth-child(5) {
     color: #fff;
     /* Ocupa toda la altura menos el header aprox, pero mínimo toda la pantalla */
     min-height: 100vh !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     padding: 120px 20px 60px !important;
     /* Padding top alto para compensar el header fixed */
-    text-align: center;
+    text-align: center !important;
 }
 
 .success-content {
