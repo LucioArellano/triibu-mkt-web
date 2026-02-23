@@ -1204,6 +1204,27 @@ body {
     font-family: 'Noto Sans', sans-serif;
     font-size: 0.9rem;
     opacity: 0.9;
+    /* Nuevas reglas Flexbox para móvil */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-legal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-legal a {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.footer-legal a:hover {
+    text-decoration: underline;
+    opacity: 1;
 }
 
 .is-visible {
@@ -1239,9 +1260,20 @@ body {
         font-size: 2rem;
     }
 
-    .footer-bottom {
-        margin-top: 80px;
-    }
+        .footer-bottom {
+            margin-top: 80px;
+            flex-direction: row;
+            /* Copyright a un lado, links al otro */
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .footer-legal {
+            flex-direction: row;
+            /* Links en horizontal */
+            gap: 30px;
+            /* Espacio entre cada link legal */
+        }
 }
 
 /* --- 1. CONFIGURACIÓN BASE (ESTADO OCULTO) --- */
