@@ -2344,7 +2344,7 @@ li.is-visible:nth-child(5) {
 
 /* --- LEGAL PAGES (Privacy, Terms, SMS) --- */
 .legal-page-container {
-    padding: 120px 60px 80px;
+    padding: 140px 20px 80px;
     /* Espacio superior amplio para que el header no tape el título */
     background-color: #ffffff;
     color: #3b3b3b;
