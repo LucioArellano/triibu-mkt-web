@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Triibu Marketing</title>
     <link rel="stylesheet" href="/css/style.css">
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeI9qEsAAAAAClXjycc7v2yLvuweG9gfP908tq5"></script>
 </head>
 
 <body>
@@ -14,7 +16,6 @@
     <main class="contact-page">
         <div class="container-1224">
             <div class="contact-grid-layout">
-
                 <div class="contact-info-col reveal-on-scroll">
                     <h1 class="contact-title">CONTACT US</h1>
                     <p class="contact-subtitle">Let's make together something big!</p>
@@ -23,6 +24,8 @@
                 <div class="contact-form-col reveal-on-scroll">
                     <form id="contactForm" action="contact.php" method="POST" class="contact-form">
                         <input type="hidden" name="origin_page" value="contact.html">
+
+                        <input type="hidden" name="recaptcha_token" id="recaptcha_token">
 
                         <div class="form-group">
                             <label for="name">Name*</label>
@@ -43,8 +46,8 @@
                             <label for="website_url">Leave this field empty</label>
                             <input type="text" name="website_url" id="website_url" tabindex="-1" autocomplete="off">
                         </div>
+
                         <button type="submit" class="btn-send">Send</button>
-                        <p id="form-status" style="display: none; margin-top: 15px; font-weight: bold;"></p>
                     </form>
                 </div>
 
@@ -52,13 +55,28 @@
                     <img src="https://cdn.zyrosite.com/cdn-cgi/image/format=auto,w=1440,h=839,fit=crop/cdn-builder-placeholders/asset-manager/KgLlSno7RLI.jpeg?w=1366&q=70&auto=format"
                         alt="Triibu Collaboration">
                 </div>
-
             </div>
         </div>
     </main>
 
     <div id="footer-placeholder"></div>
     <script src="/js/main.js"></script>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Detenemos el envío tradicional
+
+            grecaptcha.ready(function () {
+                // Generamos el token de seguridad
+                grecaptcha.execute('TU_CLAVE_DEL_SITIO', { action: 'submit' }).then(function (token) {
+                    // Ponemos el token en nuestro campo oculto
+                    document.getElementById('recaptcha_token').value = token;
+                    // Ahora sí, enviamos el formulario a PHP
+                    document.getElementById('contactForm').submit();
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
